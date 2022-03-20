@@ -72,7 +72,7 @@ void InitImGui()
 }
 
 void ScripthookBypass(bool shbypass) {
-	auto kuk = *reinterpret_cast<uintptr_t*>((uintptr_t)GetModuleHandleA("net.dll") + 0xE8740); //ICoreGameInit //0xE8680
+	auto kuk = *reinterpret_cast<uintptr_t*>((uintptr_t)GetModuleHandleA("net.dll") + 0xE8740); //ICoreGameInit you can find in https://github.com/Master-Dream404/FiveM-offsets/blob/main/offsets.h#L10
 	*reinterpret_cast<bool*>(kuk + 0x8) = shbypass;
 }
 
@@ -145,7 +145,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 		ImGui::SetNextItemWidth(228);
 		ImGui::Checkbox("Crosshir", &Misc::crosshair);
 		ImGui::SetNextItemWidth(228);
-		ImGui::Combo("Crosshir´s", &Misc::selectedS, Misc::CrosshirS, IM_ARRAYSIZE(Misc::CrosshirS));
+		ImGui::Combo("CrosshirÂ´s", &Misc::selectedS, Misc::CrosshirS, IM_ARRAYSIZE(Misc::CrosshirS));
 		ImGui::SetNextItemWidth(228);
 		ImGui::SliderFloat("Crosshir Range", &Misc::sizefC, 0, 15);
 		ImGui::Spacing();
