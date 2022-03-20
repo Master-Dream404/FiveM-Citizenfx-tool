@@ -27,6 +27,7 @@
 #include <functional>
 
 Manager::SDK SDK;
+Manager::conhost console;
 
 
 
@@ -72,7 +73,7 @@ void InitImGui()
 }
 
 void ScripthookBypass(bool shbypass) {
-	auto kuk = *reinterpret_cast<uintptr_t*>((uintptr_t)GetModuleHandleA("net.dll") + 0xE8740); //ICoreGameInit you can find in https://github.com/Master-Dream404/FiveM-offsets/blob/main/offsets.h#L10
+	auto kuk = *reinterpret_cast<uintptr_t*>((uintptr_t)GetModuleHandleA("net.dll") + 0xE8740); //ICoreGameInit //0xE8680
 	*reinterpret_cast<bool*>(kuk + 0x8) = shbypass;
 }
 
@@ -156,6 +157,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 			ImGui::Text(std::string(ICON_FA_SERVER " Server IP: ").append(ip.length() == 0 ? "[FiveM] You are not on a server." : ip.c_str()).c_str());
 			ImGui::Text(ICON_FA_USERS " Discord : %S", Manager::Discordmanager->DiscordName);
 
+			if (ImGui::Button("Print(\"text\")")) { console.Print("Console", "Master Dream on top!"); }
 			if (ImGui::Button("Stop chat")) { SDK.Stop("chat"); }
 			if (ImGui::Button("Start chat")) { SDK.Start("chat"); }
 			if (ImGui::Button("Get path chat")) { std::string path = SDK.GetPath("chat"); MessageBoxA(0, path.c_str(), "Master Dream was here", 0); }
