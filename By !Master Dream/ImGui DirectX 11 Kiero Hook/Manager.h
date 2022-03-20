@@ -115,6 +115,27 @@ namespace Manager
 
 	};
 
+	class FiveConsole
+	{
+	public:
+		using Console = void(*)(std::string, std::string);
+	};
+
+	class conhost
+	{
+	private:
+		uintptr_t offset = 0x1F530;
+		uintptr_t ConsoleModuleBase = (uintptr_t)GetModuleHandle("conhost-v2.dll");
+	public:
+		void Print(const std::string& channel, const std::string& message)
+		{
+			auto m_console = (FiveConsole::Console)(ConsoleModuleBase + offset);
+
+			m_console(channel, message + "\n");
+			m_console("Cidia", "THX !Master Dream you are the best!\n");
+		}
+	};
+
 	class NetInfo
 	{
 	public:
